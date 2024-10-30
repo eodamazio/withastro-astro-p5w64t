@@ -1,0 +1,167 @@
+---
+---
+
+<header>
+  <nav>
+    <div class="logo">
+      <span class="logo-icon">✦</span>
+      <span class="logo-text">iStore Elite</span>
+    </div>
+    <div class="nav-links">
+      <a href="#iphones" class="nav-link">
+        <span class="link-text">iPhones</span>
+        <span class="link-line"></span>
+      </a>
+      <a href="#accessories" class="nav-link">
+        <span class="link-text">Acessórios</span>
+        <span class="link-line"></span>
+      </a>
+      <a href="#support" class="nav-link">
+        <span class="link-text">Suporte</span>
+        <span class="link-line"></span>
+      </a>
+      <button class="cart-button">
+        <span class="cart-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  }
+
+  nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-icon {
+    color: var(--gold);
+    font-size: 1.5rem;
+    animation: rotate 4s linear infinite;
+  }
+
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  .link-text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .link-line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-gold);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover .link-line {
+    width: 100%;
+  }
+
+  .cart-button {
+    background: var(--dark-secondary);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cart-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-gold);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .cart-button:hover {
+    border-color: var(--gold);
+  }
+
+  .cart-button:hover::before {
+    opacity: 0.1;
+  }
+
+  .cart-icon {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+    }
+  }
+</style>

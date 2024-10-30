@@ -1,0 +1,108 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="iStore Premium - Loja Exclusiva de iPhones" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="cursor"></div>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--gold: #D4AF37;
+		--gold-light: #F4D03F;
+		--dark: #0A0A0A;
+		--dark-secondary: #1A1A1A;
+		--text: #FFFFFF;
+		--text-secondary: rgba(255, 255, 255, 0.7);
+		--gradient-gold: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+		--gradient-dark: linear-gradient(135deg, var(--dark) 0%, var(--dark-secondary) 100%);
+	}
+	
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		cursor: none;
+	}
+	
+	html {
+		font-family: 'Plus Jakarta Sans', sans-serif;
+		background: var(--dark);
+		scroll-behavior: smooth;
+		color: var(--text);
+	}
+	
+	body {
+		min-height: 100vh;
+		overflow-x: hidden;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Playfair Display', serif;
+	}
+
+	.cursor {
+		width: 20px;
+		height: 20px;
+		border: 2px solid var(--gold);
+		border-radius: 50%;
+		position: fixed;
+		pointer-events: none;
+		z-index: 9999;
+		transition: all 0.1s ease;
+		transition-property: width, height, border;
+		will-change: width, height, transform, border;
+	}
+
+	.cursor::after {
+		content: '';
+		width: 4px;
+		height: 4px;
+		position: absolute;
+		border-radius: 50%;
+		background: var(--gold-light);
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		transition: width, height, 0.1s ease;
+	}
+
+	a:hover ~ .cursor,
+	button:hover ~ .cursor {
+		width: 40px;
+		height: 40px;
+		border-width: 3px;
+	}
+
+	@media (max-width: 768px) {
+		.cursor {
+			display: none;
+		}
+	}
+</style>
+
+<script>
+	const cursor = document.querySelector('.cursor');
+
+	document.addEventListener('mousemove', (e) => {
+		cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+	});
+</script>
